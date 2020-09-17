@@ -4,7 +4,7 @@ services:
   db:
     image: mysql:5.7
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - db-volume:/var/lib/mysql
       - ./mysql/conf.d:/etc/mysql/conf.d

@@ -25,13 +25,6 @@ services:
     volumes:
       - redis-volume:/data
 
-  redisCommander:
-    image: rediscommander/redis-commander
-    ports:
-      - "8081:8081"
-    environment:
-      - REDIS_HOSTS=redis
-
   rabbitmq:
     image: rabbitmq:3.8.3-management-alpine
     ports:

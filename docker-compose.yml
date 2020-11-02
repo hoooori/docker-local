@@ -13,6 +13,18 @@ services:
       MYSQL_USER: root
       TZ: Asia/Tokyo
 
+  db-sandbox:
+    image: mysql:5.7
+    ports:
+      - "3316:3306"
+    volumes:
+      - db-sandbox-volume:/var/lib/mysql
+      - ./mysql/conf.d:/etc/mysql/conf.d
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_USER: root
+      TZ: UTC
+
   memcached:
     image: memcached:1.6.6-alpine
     ports:
@@ -35,5 +47,6 @@ services:
 
 volumes:
   db-volume:
+  db-sandbox-volume:
   redis-volume:
   rabbitmq-volume:

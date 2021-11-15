@@ -3,6 +3,7 @@ version: '3'
 services:
   db:
     image: mysql:5.7
+    platform: linux/x86_64
     ports:
       - "3306:3306"
     volumes:
@@ -11,10 +12,11 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_USER: root
-      TZ: Asia/Tokyo
+      TZ: UTC
 
   db-sandbox:
     image: mysql:5.7
+    platform: linux/x86_64
     ports:
       - "3316:3306"
     volumes:

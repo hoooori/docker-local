@@ -2,7 +2,7 @@ version: '3'
 
 services:
   db:
-    image: mysql:5.7
+    image: mysql:8.0
     platform: linux/x86_64
     ports:
       - "3306:3306"
@@ -14,7 +14,7 @@ services:
       TZ: UTC
 
   db-sandbox:
-    image: mysql:5.7
+    image: mysql:8.0
     platform: linux/x86_64
     ports:
       - "3316:3306"

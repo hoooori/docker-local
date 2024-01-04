@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   db:
@@ -8,10 +8,22 @@ services:
       - "3306:3306"
     volumes:
       - db-volume:/var/lib/mysql
-      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/write/conf.d:/etc/mysql/conf.d
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       TZ: UTC
+
+  # db_replica:
+  #   image: mysql:8.0
+  #   platform: linux/x86_64
+  #   ports:
+  #     - "3307:3306"
+  #   volumes:
+  #     - db-volume-replica:/var/lib/mysql
+  #     - ./mysql/read/conf.d:/etc/mysql/conf.d
+  #   environment:
+  #     MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+  #     TZ: UTC
 
   db-sandbox:
     image: mysql:8.0
@@ -20,9 +32,9 @@ services:
       - "3316:3306"
     volumes:
       - db-sandbox-volume:/var/lib/mysql
-      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/write/conf.d:/etc/mysql/conf.d
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       TZ: UTC
 
   memcached:
@@ -40,13 +52,14 @@ services:
   rabbitmq:
     image: rabbitmq:3.8.3-management-alpine
     ports:
-      - '5672:5672'
-      - '15672:15672'
+      - "5672:5672"
+      - "15672:15672"
     volumes:
       - rabbitmq-volume:/var/lib/rabbitmq
 
 volumes:
   db-volume:
+  db-volume-replica:
   db-sandbox-volume:
   redis-volume:
   rabbitmq-volume:
